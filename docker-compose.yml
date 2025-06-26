@@ -1,0 +1,4 @@
+version: "3.8"
+
+services:
+  # We'll add services here in the next steps
