@@ -1,4 +1,56 @@
 version: "3.8"
 
 services:
-  # We'll add services here in the next steps
+  mysqldb:
+    image: mysql:8.0.33
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: tpfoyer_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  eureka-server:
+    build:
+      context: ./eureka-server
+      dockerfile: Dockerfile
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    restart: unless-stopped
+
+  gateway:
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+    container_name: spring-gateway
+    ports:
+      - "8084:8084"
+    restart: unless-stopped
+    depends_on:
+      - eureka-server
+
+  tpfoyer:
+    build:
+      context: ./tp-foyer
+      dockerfile: Dockerfile
+    container_name: tpfoyer-service
+    ports:
+      - "8089:8089"
+    depends_on:
+      mysqldb:
+        condition: service_healthy
+      eureka-server:
+        condition: service_started
+    volumes:
+      - ./tp-foyer/wait-for-it.sh:/wait-for-it.sh
+
+volumes:
+  db_data:
