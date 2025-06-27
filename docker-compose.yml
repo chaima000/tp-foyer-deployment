@@ -53,7 +53,7 @@ services:
                       "Path=/tpfoyer/bloc/**"
                     ],
                     "filters": [
-                      "StripPrefix=1"
+                      "StripPrefix=2"  // Strip '/tpfoyer/bloc' → forward only '/bloc'
                     ]
                   }
                 ]
