@@ -56,12 +56,11 @@ services:
           "spring.datasource.username": "root",
           "spring.datasource.password": "root",
           "spring.jpa.properties.hibernate.dialect": "org.hibernate.dialect.MySQL8Dialect",
-          "spring.jpa.hibernate.ddl-auto": "update"
+          "spring.jpa.hibernate.ddl-auto": "update",
+          "eureka.client.service-url.defaultZone": "http://eureka:8761/eureka/"
         }
     volumes:
       - ./TPFoyer/wait-for-it.sh:/wait-for-it.sh
-      # Si tu as un jar à monter (optionnel)
-      # - ./TPFoyer/app.jar:/app.jar
     stdin_open: true
     tty: true
 
