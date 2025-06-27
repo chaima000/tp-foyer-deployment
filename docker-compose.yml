@@ -39,7 +39,7 @@ services:
 
   tpfoyer:
     build:
-      context: ./tp-foyer
+      context: ./TPFoyer
       dockerfile: Dockerfile
     container_name: tpfoyer-service
     ports:
