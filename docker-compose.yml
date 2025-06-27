@@ -19,7 +19,7 @@ services:
 
   eureka-server:
     build:
-      context: ./eureka-server
+      context:  ./eureka
       dockerfile: Dockerfile
     container_name: eureka-server
     ports:
