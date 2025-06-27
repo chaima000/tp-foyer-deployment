@@ -17,11 +17,11 @@ services:
       timeout: 5s
       retries: 5
 
-  eureka-server:
+  eureka:
     build:
-      context:  ./eureka
+      context: ./eureka
       dockerfile: Dockerfile
-    container_name: eureka-server
+    container_name: eureka
     ports:
       - "8761:8761"
     restart: unless-stopped
@@ -35,7 +35,7 @@ services:
       - "8084:8084"
     restart: unless-stopped
     depends_on:
-      - eureka-server
+      - eureka
 
   tpfoyer:
     build:
@@ -47,7 +47,7 @@ services:
     depends_on:
       mysqldb:
         condition: service_healthy
-      eureka-server:
+      eureka:
         condition: service_started
     volumes:
       - ./tp-foyer/wait-for-it.sh:/wait-for-it.sh
