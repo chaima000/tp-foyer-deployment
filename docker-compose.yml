@@ -50,7 +50,7 @@ services:
       eureka:
         condition: service_started
     volumes:
-      - ./tp-foyer/wait-for-it.sh:/wait-for-it.sh
+      - ./TPFoyer/wait-for-it.sh:/wait-for-it.sh
 
 volumes:
   db_data:
