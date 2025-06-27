@@ -49,8 +49,21 @@ services:
         condition: service_healthy
       eureka:
         condition: service_started
+    environment:
+      SPRING_APPLICATION_JSON: |
+        {
+          "spring.datasource.url": "jdbc:mysql://mysqldb:3306/tpfoyer_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC",
+          "spring.datasource.username": "root",
+          "spring.datasource.password": "root",
+          "spring.jpa.properties.hibernate.dialect": "org.hibernate.dialect.MySQL8Dialect",
+          "spring.jpa.hibernate.ddl-auto": "update"
+        }
     volumes:
       - ./TPFoyer/wait-for-it.sh:/wait-for-it.sh
+      # Si tu as un jar à monter (optionnel)
+      # - ./TPFoyer/app.jar:/app.jar
+    stdin_open: true
+    tty: true
 
 volumes:
   db_data:
