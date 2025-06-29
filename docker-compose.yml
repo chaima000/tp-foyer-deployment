@@ -53,7 +53,17 @@ services:
                       "Path=/tpfoyer/bloc/**"
                     ],
                     "filters": [
-                      "StripPrefix=2"  // Strip '/tpfoyer/bloc' → forward only '/bloc'
+                      "StripPrefix=2"
+                    ]
+                  },
+                  {
+                    "id": "tpfoyer-swagger",
+                    "uri": "http://tpfoyer-service:8089",
+                    "predicates": [
+                      "Path=/tpfoyer/swagger-ui/**"
+                    ],
+                    "filters": [
+                      "StripPrefix=2"
                     ]
                   }
                 ]
