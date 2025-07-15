@@ -40,33 +40,13 @@ services:
       SPRING_APPLICATION_JSON: |
         {
           "spring": {
-            "application": {
-              "name": "gateway"
-            },
             "cloud": {
               "gateway": {
-                "routes": [
-                  {
-                    "id": "tpfoyer-bloc",
-                    "uri": "http://tpfoyer-service:8089",
-                    "predicates": [
-                      "Path=/tpfoyer/bloc/**"
-                    ],
-                    "filters": [
-                      "StripPrefix=1"
-                    ]
-                  },
-                  {
-                    "id": "tpfoyer-swagger",
-                    "uri": "http://tpfoyer-service:8089",
-                    "predicates": [
-                      "Path=/tpfoyer/swagger-ui/**"
-                    ],
-                    "filters": [
-                      "StripPrefix=2"
-                    ]
+                "discovery": {
+                  "locator": {
+                    "enabled": true
                   }
-                ]
+                }
               }
             }
           },
@@ -74,19 +54,9 @@ services:
             "client": {
               "service-url": {
                 "defaultZone": "http://eureka:8761/eureka/"
-              },
-              "register-with-eureka": true,
-              "fetch-registry": true
+              }
             }
-          },
-          "logging": {
-            "level": {
-              "org.springframework.cloud.gateway": "DEBUG",
-              "reactor.netty.http.client": "DEBUG"
-            }
-          },
-          "spring.zipkin.enabled": false,
-          "management.tracing.enabled": false
+          }
         }
     stdin_open: true
     tty: true
