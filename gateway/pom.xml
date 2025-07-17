@@ -14,7 +14,7 @@
 
 	<groupId>com.eureka</groupId>
 	<artifactId>gateway</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>5.0.0</version>
 	<name>gateway</name>
 	<description>API Gateway using Spring Cloud Gateway</description>
 
