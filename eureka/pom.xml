@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.eureka</groupId>
 	<artifactId>eureka</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>5.0.0</version>
 	<name>eureka</name>
 	<description>eureka</description>
 	<url/>
@@ -57,6 +57,13 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+	<distributionManagement>
+		<repository>
+			<id>eureka</id>
+			<url>http://192.168.56.10:8081/repository/maven-releases/</url>
+		</repository>
+	</distributionManagement>
 
 	<build>
 		<plugins>
